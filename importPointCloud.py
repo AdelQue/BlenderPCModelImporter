@@ -1,5 +1,6 @@
-import os, bpy, bmesh, math
+import os, bpy, bmesh, math, time
 from os.path import dirname
+from . import installModule
 
 ADDON_DIR = dirname(dirname(dirname(os.path.realpath(__file__)))) + "\\addons\\BlenderPCModelImporter"
 print(ADDON_DIR)
@@ -18,10 +19,15 @@ class UserException(Exception):
 def get_path():
     return ADDON_DIR
 
+
 try:
     import pythonnet
 except ModuleNotFoundError as exc:
-    raise UserException(("Could not install python.net, please try running blender with"
+    installModule.installModule("pythonnet")
+    try:
+        import pythonnet
+    except ModuleNotFoundError as exc:
+        raise UserException(("Could not download python.net, please try running blender with"
             " admin rights")) from exc
 
 path = os.path.join(get_path(), "libs")
