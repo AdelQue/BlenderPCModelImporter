@@ -2,7 +2,7 @@ import os, bpy, bmesh, math, time
 from os.path import dirname
 from . import installModule
 
-ADDON_DIR = dirname(dirname(dirname(os.path.realpath(__file__)))) + "\\addons\\BlenderPCModelImporter"
+ADDON_DIR = bpy.utils.user_resource('SCRIPTS', path="\\addons\\BlenderPCModelImporter")
 print(ADDON_DIR)
 ADDON_NAME = os.path.basename(ADDON_DIR)
 FILEPATH = ""
